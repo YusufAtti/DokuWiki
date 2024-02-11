@@ -25,13 +25,13 @@ void etiketleriCek(){
 }
 
 void dosyaIsimleriBul(){
-	char foldernames[3][40] = {"Bölümler" , "Dersler" , "Öðretim Elemanlarý"};
+	char foldernames[3][40] = {"BÃ¶lÃ¼mler" , "Dersler" , "Ã–Ã°retim ElemanlarÃ½"};
 	int j=0,i=0,a;
 	for(a=0; a<3; a++){
     	DIR *d;
     	struct dirent *dir;
 		char yol[80];
-		strcpy(yol,"./Üniversite/");
+		strcpy(yol,"./Ãœniversite/");
 		strcat(yol,foldernames[a]);
    		d = opendir(yol);
     	if (d)
@@ -152,7 +152,7 @@ void filename(char *foldername , char files[][50]){
     DIR *d;
     struct dirent *dir;
 	char yol[80];
-	strcpy(yol,"./Üniversite/");
+	strcpy(yol,"./Ãœniversite/");
 	strcat(yol,foldername);
     d = opendir(yol);
     if (d)
@@ -249,7 +249,7 @@ void outputYazdir(){
 			for(i=0; i<50; i++){
 				if(etiketler[i].adet == 0)
 					break;
-				fprintf(fp1 , "Etiket Adý : %sGeçtiði Sayi : %d\n", etiketler[i].ad , etiketler[i].adet);
+				fprintf(fp1 , "Etiket AdÃ½ : %sGeÃ§tiÃ°i Sayi : %d\n", etiketler[i].ad , etiketler[i].adet);
 			}	
 			fprintf(fp1 ,"\n%s\n-----------\n" , "Yetim Etiketler");
 			for(i=0; i<50; i++){
@@ -360,7 +360,7 @@ void output(){
 	FILE *fp1 = fopen("yetimetiketler.txt","w");
 	fclose(fp);
 	fclose(fp1);
-	char foldernames[3][40] = {"Dersler" , "Bölümler" , "Öðretim Elemanlarý"};	
+	char foldernames[3][40] = {"Dersler" , "BÃ¶lÃ¼mler" , "Ã–Ã°retim ElemanlarÃ½"};	
 	char filenames[50][50];
 	char _dir[80];
 	int i,j;
@@ -370,7 +370,7 @@ void output(){
 			//printf("%s\n", filenames[j]);
 			if(strstr(filenames[j] , ".txt") == NULL)
 				break;
-			strcpy(_dir,"./Üniversite/");
+			strcpy(_dir,"./Ãœniversite/");
 			strcat(_dir,foldernames[i]);
 			strcat(_dir,"/");
 			strcat(_dir,filenames[j]);
@@ -396,7 +396,7 @@ void outputuEkranaBas(){
 void arama(char *kelime){
 	yetimEtiketYazdir();
 	printf("\n\n");
-	char folders[3][50] = {"Dersler" , "Bölümler" , "Öðretim Elemanlarý"};	
+	char folders[3][50] = {"Dersler" , "BÃ¶lÃ¼mler" , "Ã–Ã°retim ElemanlarÃ½"};	
 	char metin[2048];
 	char etiketMi[30];
 	char filenames[20][50];
@@ -406,13 +406,13 @@ void arama(char *kelime){
 		for(a= 0; a < 20; a++){
 			if(strstr(filenames[a] , ".txt") == NULL)
 				break;	
-			//Dosya Yolunu Ayarlýyoruz
-			char _dir[80] = "./Üniversite/";
+			//Dosya Yolunu AyarlÃ½yoruz
+			char _dir[80] = "./Ãœniversite/";
 			strcat(_dir,folders[i]);
 			strcat(_dir,"/");
 			strcat(_dir,filenames[a]);
 			//----------------------
-			//Dosyadan verileri diziye Alýyorum
+			//Dosyadan verileri diziye AlÃ½yorum
 			strcpy(metin,filetoarray(_dir));
 			//-------------------------------
 			//Arama fonksiyonunu cagiriyoruz
@@ -434,7 +434,7 @@ void arama(char *kelime){
 				char* etiket = malloc(50);
 				int indis;
 				int sayac = 0;
-				//Dosyasý var mý yok mu kontrol edilecek...
+				//DosyasÃ½ var mÃ½ yok mu kontrol edilecek...
 				if(metin[index-1] == '[' && metin[index-2] == '[' && metin[index2 + index] == ']' && metin[index2 + index + 1] == ']'){
 					for(indis=0; indis<50; indis++){
 						if(strlen(etiketler[indis]) < 3)
@@ -525,7 +525,7 @@ void guncelle(char *arananKelime){
 			char* yeniEtiket = malloc(50);	
 			gets(yeniEtiket);
 			int j=0,i=0,a;
-			//Dosyada güncelleme için tutuluyorlar
+			//Dosyada gÃ¼ncelleme iÃ§in tutuluyorlar
 			char* eskiKelime = malloc(strlen(arananKelime) + 4);
 			strcat(eskiKelime, "[[");
 			strcat(eskiKelime,arananKelime);
@@ -541,21 +541,21 @@ void guncelle(char *arananKelime){
 			char* _dir = malloc(255);
 			char* _dosyaadi = malloc(50);
 			
-			//Ismini degistireceðimiz dosyanýn adresinin basi
-			strcpy(_dir,"C:\\\\Users\\\\omera\\\\Desktop\\\\Üniversite\\\\");
+			//Ismini degistireceÃ°imiz dosyanÃ½n adresinin basi
+			strcpy(_dir,"C:\\\\Users\\\\yusufa\\\\Desktop\\\\Ãœniversite\\\\");
 			
-			//Path için aranan dosya düzenleniyor...
+			//Path iÃ§in aranan dosya dÃ¼zenleniyor...
 			strcpy(_dosyaadi,arananKelime);
 			strcat(_dosyaadi , ".txt");
 			//------------------------------
 			
-			//Dosyanýn Nerede oldugu bulunuyor.
-			char foldernames[3][40] = {"Bölümler" , "Dersler" , "Öðretim Elemanlarý"};
+			//DosyanÃ½n Nerede oldugu bulunuyor.
+			char foldernames[3][40] = {"BÃ¶lÃ¼mler" , "Dersler" , "Ã–Ã°retim ElemanlarÃ½"};
 			for(a=0; a<3; a++){
     			DIR *d;
     			struct dirent *dir;
 				char yol[80];
-				strcpy(yol,"./Üniversite/");
+				strcpy(yol,"./Ãœniversite/");
 				strcat(yol,foldernames[a]);
    				d = opendir(yol);
     			if (d)
@@ -570,7 +570,7 @@ void guncelle(char *arananKelime){
             			if(strcmp(dir->d_name ,  _dosyaadi) == 0){
             				strcat(_dir,foldernames[a]);
 						}
-						strcpy(_dir2 , ".\\Üniversite\\");
+						strcpy(_dir2 , ".\\Ãœniversite\\");
 						strcat(_dir2 , foldernames[a]);
 						strcat(_dir2 , "\\");
 						strcat(_dir2 , dir->d_name);
@@ -584,15 +584,15 @@ void guncelle(char *arananKelime){
 				memset(yol,0,sizeof(yol)); 
 			}
 			
-			//Path e klasör adi eklendi
+			//Path e klasÃ¶r adi eklendi
 			strcat(_dir , "\\\\");
 			
 			
-			//Yeni dosya ismi için path olusturuluyor
+			//Yeni dosya ismi iÃ§in path olusturuluyor
 			char* _newdir = malloc(255);
 			strcpy(_newdir,_dir);
 			
-			//Eski path tamamlandý
+			//Eski path tamamlandÃ½
 			strcat(_dir , _dosyaadi);
 			//------------------------------------
 				
@@ -604,7 +604,7 @@ void guncelle(char *arananKelime){
 			
 		else if(kontrol == 0){
 			int secim;
-			printf("Bu bir yetim etikettir. Dosyasini olusturmak istiyorsaniz 1 , ismini degistirmek istiyorsaniz 2 týklayýn.");
+			printf("Bu bir yetim etikettir. Dosyasini olusturmak istiyorsaniz 1 , ismini degistirmek istiyorsaniz 2 tÃ½klayÃ½n.");
 			scanf("%d", &secim);
 			//printf("Secilen secim : %d\n" , secim);
 			if(secim == 1){
@@ -617,7 +617,7 @@ void guncelle(char *arananKelime){
 				itoa(numarator, numara, 10);
 				strcat(dersinkodu,numara);
 				numarator++;
-				char yol[80] = ".\\\\Üniversite\\\\Dersler\\\\";
+				char yol[80] = ".\\\\Ãœniversite\\\\Dersler\\\\";
 				strcat(yol,arananKelime);
 				strcat(yol,".txt");
 				//printf("yol : %s" , yol);
@@ -628,7 +628,7 @@ void guncelle(char *arananKelime){
 					fprintf(fp2 , "%s\n" , dersinkodu);
 					fprintf(fp2 , "%s\n" , dersinadi);
 					fprintf(fp2 , "%s\n" , dersinicerigi);
-					printf("Dosya olusturuldu. Outputu yazdýrýp kontrol edebilirsiniz...\n");
+					printf("Dosya olusturuldu. Outputu yazdÃ½rÃ½p kontrol edebilirsiniz...\n");
 				}		
 				fclose(fp2);
 			}	
@@ -641,7 +641,7 @@ void guncelle(char *arananKelime){
 				gets(yeniEtiket);
 				
 				int j=0,i=0,a;
-				//Dosyada güncelleme için tutuluyorlar
+				//Dosyada gÃ¼ncelleme iÃ§in tutuluyorlar
 				char* eskiKelime = malloc(strlen(arananKelime) + 4);
 				strcat(eskiKelime, "[[");
 				strcat(eskiKelime,arananKelime);
@@ -657,22 +657,22 @@ void guncelle(char *arananKelime){
 				char* _dir = malloc(255);
 				char* _dosyaadi = malloc(50);
 			
-				//Ismini degistireceðimiz dosyanýn adresinin basi
-				strcpy(_dir,"C:\\\\Users\\\\omera\\\\Desktop\\\\Üniversite\\\\");
+				//Ismini degistireceÃ°imiz dosyanÃ½n adresinin basi
+				strcpy(_dir,"C:\\\\Users\\\\yusufa\\\\Desktop\\\\Ãœniversite\\\\");
 			
-				//Path için aranan dosya düzenleniyor...
+				//Path iÃ§in aranan dosya dÃ¼zenleniyor...
 				strcpy(_dosyaadi,arananKelime);
 				strcat(_dosyaadi , ".txt");
 				//------------------------------
 			
-				//Dosyanýn Nerede oldugu bulunuyor.
-				char foldernames[3][40] = {"Dersler" , "Bölümler" , "Öðretim Elemanlarý"};
+				//DosyanÃ½n Nerede oldugu bulunuyor.
+				char foldernames[3][40] = {"Dersler" , "BÃ¶lÃ¼mler" , "Ã–Ã°retim ElemanlarÃ½"};
 		
 				for(a=0; a<3; a++){
     				DIR *d;
     				struct dirent *dir;
 					char yol[80];
-					strcpy(yol,"./Üniversite/");
+					strcpy(yol,"./Ãœniversite/");
 					strcat(yol,foldernames[a]);
    					d = opendir(yol);
     				if (d)
@@ -687,7 +687,7 @@ void guncelle(char *arananKelime){
             				if(strcmp(dir->d_name ,  _dosyaadi) == 0){
             					strcat(_dir,foldernames[a]);
 							}
-							strcpy(_dir2 , ".\\Üniversite\\");
+							strcpy(_dir2 , ".\\Ãœniversite\\");
 							strcat(_dir2 , foldernames[a]);
 							strcat(_dir2 , "\\");
 							strcat(_dir2 , dir->d_name);
@@ -712,7 +712,7 @@ void guncelle(char *arananKelime){
 		}
 		
 		else if(kontrol == -1)
-			printf("Girilen kelime etiket veya yetim etiket degil degisim yapamazsýnýz...\n");
+			printf("Girilen kelime etiket veya yetim etiket degil degisim yapamazsÃ½nÃ½z...\n");
 			
 	
 			
@@ -727,7 +727,7 @@ void main(){
 			
 	int secim;
 	while(1){
-		printf("Yapmak istediginiz islemi seciniz...\n1-Outputu Bas\n2-Arama\n3-Güncelleme\nCikis icin 0\nSeciminiz : ");
+		printf("Yapmak istediginiz islemi seciniz...\n1-Outputu Bas\n2-Arama\n3-GÃ¼ncelleme\nCikis icin 0\nSeciminiz : ");
 		scanf("%d", &secim);
 		if(secim == 0)
 			break;
